@@ -16,7 +16,7 @@ class SeriesController extends Controller
     {
     }
 
-    public function index(Request $request)
+    public function index()
     {
         $series = Series::with(['season'])->get();
         $mensagemSucesso = session('mensagem.sucesso');
