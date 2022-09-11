@@ -35,7 +35,9 @@ class SeriesController extends Controller
 
     public function update(int $series, SeriesFormRequest $request)
     {
-        Series::where('id', $series)->update($request->all());
+        Series::where('id', $series)->update([
+            'nome' => $request->nome
+        ]);
         return response()->noContent();
     }
 
