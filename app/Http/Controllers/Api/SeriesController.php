@@ -28,9 +28,8 @@ class SeriesController extends Controller
 
     public function show(int $series)
     {
-        return Series::whereId($series)
-            ->with('season.episodes')
-            ->first();
+        return Series::with('season.episodes')->find($series)
+            ?? response()->json([], Response::HTTP_NOT_FOUND);
     }
 
     public function update(int $series, SeriesFormRequest $request)
