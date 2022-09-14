@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -44,8 +45,9 @@ class SeriesController extends Controller
         return response()->noContent();
     }
 
-    public function destroy(int $series)
+    public function destroy(int $series, Authenticatable $user)
     {
+        dd($user->tokenCan('series:delete'));
         Series::destroy($series);
         return response()->noContent();
     }
